@@ -22,11 +22,21 @@ pipeline {
                             -Dsonar.projectKey=franklyn-org_react-app \
                             -Dsonar.organization=franklyn-org \
                             -Dsonar.sources=. \
-                            -Dsonar.host.url=https://sonarcloud.io
+                            -Dsonar.host.url=https://sonarcloud.io \
                             '''
 
                     }
                 }
+            }
+        }
+
+        post {
+            success {
+                echo '✅ SonarQube analysis successful!'
+            }
+
+            failure {
+                echo '❌ SonarQube analysis failed. Please check the logs for details.'
             }
         }
     }
