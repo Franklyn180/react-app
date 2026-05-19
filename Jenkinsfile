@@ -31,9 +31,6 @@ pipeline {
             stage('Build Image') {
                 steps {
                     sh 'docker compose build'
-                    sh 'docker tag frontend-image:latest '
-                    sh 'docker tag backend-image:latest'
-
                 }
             }
 
@@ -53,7 +50,7 @@ pipeline {
             }
 
             failure {
-                echo '❌ SonarQube analysis failed. Please check the logs for details.'
+                echo '❌ Failed. Please check the logs for details.'
             }
         }
     }
