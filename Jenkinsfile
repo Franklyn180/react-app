@@ -24,8 +24,23 @@ pipeline {
                             -Dsonar.sources=. \
                             -Dsonar.host.url=https://sonarcloud.io \
                             '''
-
                     }
+                }
+            }
+
+            stage('Build Image') {
+                steps {
+                    sh 'docker compose build'
+                    sh 'docker tag frontend-image:latest '
+                    sh 'docker tag backend-image:latest'
+
+                }
+            }
+
+            stage('Deploy Application') {
+                steps {
+                    sh 'docker compose down -v'
+                    sh 'docker compose up -d'
                 }
             }
         }
@@ -33,6 +48,8 @@ pipeline {
         post {
             success {
                 echo '✅ SonarQube analysis successful!'
+                echo ' ✅ Application Image built successfully!'
+                echo '✅ Application deployed successfully!'
             }
 
             failure {
