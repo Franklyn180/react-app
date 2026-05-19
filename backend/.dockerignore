@@ -1,0 +1,7 @@
+# Backend build context ignores
+node_modules
+.env
+npm-debug.log*
+.git
+.vscode
+.DS_Store

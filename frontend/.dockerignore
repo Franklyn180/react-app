@@ -1,0 +1,8 @@
+# Frontend build context ignores
+node_modules
+.env
+dist
+build
+.git
+.vscode
+.DS_Store
